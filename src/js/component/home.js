@@ -1,24 +1,56 @@
 import React from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import { render } from "react-dom/cjs/react-dom.production.min";
+import { Component } from "react/cjs/react.production.min";
 
-//create your first component
-export function Home() {
-	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+class Home extends Component {
+	constructor() {
+		super();
+		this.state = {
+			estadoRoja: "apagada",
+			estadoAmarilla: "apagada",
+			estadoVerde: "apagada"
+		};
+	}
+	render() {
+		return (
+			<div className="contenedor">
+				<div className="palo"></div>
+				<div className="semaforo">
+					<div
+						className="luz rojo"
+						id={this.state.estadoRoja}
+						onClick={() =>
+							this.setState({
+								estadoRoja: "select",
+								estadoAmarilla: "apagada",
+								estadoVerde: "apagada"
+							})
+						}></div>
+					<div
+						className="luz amarillo"
+						id={this.state.estadoAmarilla}
+						onClick={() =>
+							this.setState({
+								estadoRoja: "apagada",
+								estadoAmarilla: "select",
+								estadoVerde: "apagada"
+							})
+						}></div>
+					<div
+						className="luz verde"
+						id={this.state.estadoVerde}
+						onClick={() =>
+							this.setState({
+								estadoRoja: "apagada",
+								estadoAmarilla: "apagada",
+								estadoVerde: "select"
+							})
+						}></div>
+				</div>
+			</div>
+		);
+	}
 }
+
+export default Home;
